@@ -71,6 +71,11 @@ class Website:
         with open(html_file_path, 'w', encoding='utf-8') as f:
             f.write(html_template)
 
+    # generate the main page for the site
+    def generate_index(self):
+        pass
+    
+        
 
 if __name__ == "__main__":
     load_dotenv()
