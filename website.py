@@ -40,6 +40,12 @@ class Website:
         for tag in article.tags:
             www.article_by_tag[tag].append(article)
 
+    def get_template(self,filename):
+        template_dir = "templates"
+        filename = os.path.join(template_dir, filename)
+        with open(filename, 'r') as file:
+            return file.read()
+    
     # create html file, in html_dir, by transforming the markdown into html
     def generate_html_article(self,article):
         # md files were copied in the html directory, we currently have 
@@ -51,30 +57,20 @@ class Website:
         # css file is in html_dir/assets/style.css
         css_path = os.path.join("html","assets", "style.css")
         css_rel_path = os.path.relpath(css_path, os.path.dirname(html_file_path))
-
         title = article.title
-        html_template = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>{title}</title>
-            <link rel="stylesheet" href="{css_rel_path}">
-        </head>
-        <body>
-            <h1>{article.title}</h1>
-            {article.html}
-        </body>
-        </html>
-        """
+
+        html_template = self.get_template("article.html")
+        rendered_html = eval(f"f'''{html_template}'''")
+        
+        
+
         with open(html_file_path, 'w', encoding='utf-8') as f:
-            f.write(html_template)
+            f.write(rendered_html)
 
     # generate the main page for the site
     def generate_index(self):
         pass
-    
+
         
 
 if __name__ == "__main__":
