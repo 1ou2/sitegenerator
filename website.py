@@ -55,7 +55,8 @@ class Website:
         # css file path
         # html article is in html_dir/YYYY/MM/DD/article_dir/article.html
         # css file is in html_dir/assets/style.css
-        css_path = os.path.join("html","assets", "style.css")
+        css_path = os.path.join("html","assets", "multicolor.css")
+        # variables used in the template
         css_rel_path = os.path.relpath(css_path, os.path.dirname(html_file_path))
         title = article.title
 

@@ -7,8 +7,43 @@
     <link rel="stylesheet" href="{css_rel_path}">
 </head>
 <body>
-    <h1>{article.title}</h1>
-    {article.html}
-    <p>footer</p>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>1ou2</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="main-content">
+            <div class="article">
+                <div class="article-meta">
+                    Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} <span class="meta-box tag-1">Programming</span>, <span class="meta-box tag-2">Python</span>
+                </div>
+            <h2>{article.title}</h2>
+            {article.html}
+        </div>
+        </div>
+        <div class="sidebar">
+            <div class="bio">
+                <h3>About Me</h3>
+                <p>I'm a software engineer and technical writer, currently living in Drogheda, Ireland.</p>
+            </div>
+            <div class="all-tags">
+                <h3>Tags</h3>
+                <span class="tag">Programming</span>
+                <span class="tag">Python</span>
+                <span class="tag">AI</span>
+                <span class="tag">Web Development</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

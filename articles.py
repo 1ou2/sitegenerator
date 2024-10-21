@@ -19,6 +19,10 @@ class Article:
         for field in required_fields:
             if field not in self.meta_data:
                 return False
+            
+        # create html_tags field
+        # <span class="meta-box tag-1">Programming</span>, <span class="meta-box tag-2">Python</span>
+        self.html_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(self.meta_data["tags"])])
         return True
     
     def get_md_content(self):
