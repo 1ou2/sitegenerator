@@ -77,6 +77,10 @@ header nav {
 .date { background-color: #2196F3; }
 .tag-1 { background-color: #f44336; }
 .tag-2 { background-color: #ff9800; }
+.tag-3 { background-color: #f436eb; }
+.tag-4 { background-color: #00ffd5; }
+.tag-5 { background-color: #2196F3;; }
+.tag-6 { background-color: #4CAF50; }
 .bio, .all-tags {
     background: #333;
     padding: 15px;

@@ -33,6 +33,10 @@ class Website:
         assets_dir = os.path.join(self.html_dir, "assets")
         os.makedirs(assets_dir, exist_ok=True)
         shutil.copytree("assets", assets_dir, dirs_exist_ok=True)
+        # copy static files to html_dir
+        static_dir = os.path.join(self.html_dir)
+        os.makedirs(static_dir, exist_ok=True)
+        shutil.copytree("static", static_dir, dirs_exist_ok=True)
 
     # html article has been created
     def add(self,article):
