@@ -1,12 +1,7 @@
-<article class="article">
-    <h2><a href="{article["link"]}">{article['title']}</a></h2>
-    <p class="date">{article['date'].strftime('%d %B %Y').capitalize()}</p>
+<div class="article">
     <div class="article-meta">
-        <span>Gabriel</span> | 
-        <time datetime="{article['date'].strftime('%Y-%M-%d').capitalize()}">{article['date'].strftime('%d %B %Y').capitalize()}</time>
+        Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} 
     </div>
-    <div class="article-content">
-    {content}
-    </div>
-    
-</article>
+<h2>{article.title}</h2>
+{article.html}
+</div>

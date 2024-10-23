@@ -21,25 +21,36 @@
         </div>
     </header>
     <div class="container">
-        <div class="main-content">
-            <div class="article">
-                <div class="article-meta">
-                    Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} 
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="article">
+                    <div class="article-meta">
+                        Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} 
+                    </div>
+                <h2>{article.title}</h2>
+                {article.html}
                 </div>
-            <h2>{article.title}</h2>
-            {article.html}
-        </div>
-        </div>
-        <div class="sidebar">
-            <div class="bio">
-                <h3>About Me</h3>
-                <p>I'm a software engineer and technical writer, currently living in Drogheda, Ireland.</p>
             </div>
-            <div class="all-tags">
-                <h3>Tags</h3>
-                {html_top_tags}
+            <div class="sidebar">
+                <div class="bio">
+                    <h3>About Me</h3>
+                    <p>I'm a software engineer and technical writer, currently living in Drogheda, Ireland.</p>
+                </div>
+                <div class="all-tags">
+                    <h3>Tags</h3>
+                    {html_top_tags}
+                </div>
+            </div>
+            <div class="navigation">
+                <a href="{article.prev_path}" class="prev">Previous Page</a>
+                <a href="{article.next_path}" class="next">Next Page</a>
             </div>
         </div>
     </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

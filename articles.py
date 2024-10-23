@@ -7,8 +7,15 @@ class Article:
         self.meta_data = {}
         self.md_content = ""
         self.md_file_path = md_file_path
+        self.prev_path = ""
+        self.next_path = ""
+        self.path = ""
+        self.rel_path = ""
+        
         if md_file_path:
             self.parse_markdown_article()
+
+        
 
     def __repr__(self):
         return f"Article: {self.meta_data}"
@@ -25,6 +32,7 @@ class Article:
         self.html_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(self.tags)])
         return True
     
+
     def get_md_content(self):
         return self.md_content
 
@@ -33,6 +41,8 @@ class Article:
         self.date = self.meta_data.get("date", "")
         # tags are separated by commas, split the tags string and strip spaces
         self.tags = [t.strip() for t in self.meta_data.get("tags", "").split(",")]
+        if not self.check_metadata():
+            print(f"Error: Invalid metadata")
 
     def parse_markdown_article(self):
         """Parse markdown file, extract meta data and content"""
@@ -48,6 +58,7 @@ class Article:
                 yaml_content = match.group(1)
                 md_content = content[match.end():]
                 self.html = markdown.markdown(md_content)
+                self.snippet = markdown.markdown(md_content)[:200]
                 # Parse YAML content
                 try:
                     meta_data = yaml.safe_load(yaml_content)

@@ -2,6 +2,7 @@ import argparse
 import os,shutil
 from dotenv import load_dotenv
 from articles import Article
+import math
 
 class Configuration:
     def __init__(self):
@@ -56,10 +57,24 @@ class Website:
 
     def init_articles(self):
         md_files = self.get_markdown_files()
-       
+        # create one article object per markdown file
         for md_file in md_files:
             article = Article(md_file)
             self.add(article)
+
+        # sort by date
+        self.articles = self.get_articles_by_date()
+        
+        # add path to this article
+        for article in self.articles:
+            article.path = article.md_file_path.replace(self.config.md_dir, self.config.html_dir).replace(".md", ".html")
+
+        # add links to previous and next articles
+        for i, article in enumerate(self.articles):
+            if i > 0:
+                article.prev_path = os.path.relpath(self.articles[i-1].path,os.path.dirname(article.path)) 
+            if i < len(self.articles) - 1:
+                article.next_path = os.path.relpath(self.articles[i+1].path,os.path.dirname(article.path))
 
         tag_count = {}
         for article in self.articles:
@@ -111,7 +126,7 @@ class Website:
         css_rel_path = os.path.relpath(css_path, os.path.dirname(html_file_path))
         title = article.title
   
-        top_tags = self.get_top_tags(10)
+        top_tags = self.get_top_tags(self.config.top_tags)
         html_top_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(top_tags)])
 
         html_template = self.get_template("article.html")
@@ -122,9 +137,37 @@ class Website:
         with open(html_file_path, 'w', encoding='utf-8') as f:
             f.write(rendered_html)
 
+
+
     # generate the main page for the site
     def generate_index(self):
-        pass
+        total_pages = math.ceil(len(self.articles) / self.config.nb_articles_per_page)
+        for page in range(total_pages):
+            start = page * self.config.nb_articles_per_page
+            end = start + self.config.nb_articles_per_page
+            articles = self.articles[start:end]
+            snippets = [article.snippet for article in articles]
+            
+            page_title = f"Page {page+1} of {total_pages}"
+            html_top_tags = "hello"
+            html_articles = ""
+            html_template = self.get_template("embedded_article.html")
+            for article in articles:
+                html_articles += eval(f"f'''{html_template}'''")
+            link_prev = ""
+            link_next = ""
+            if page > 0:
+                link_prev = f'<a href="index-{page-1}.html">Previous</a>'
+            if page < total_pages - 1:
+                link_next = f'<a href="index-{page+1}.html">Next</a>'
+
+
+
+            html_template = self.get_template("index.html")
+            rendered_html = eval(f"f'''{html_template}'''")
+            html_file_path = os.path.join(self.config.html_dir, f"index-{page}.html")
+            with open(html_file_path, 'w', encoding='utf-8') as f:
+                f.write(rendered_html)
 
     
 
@@ -134,11 +177,9 @@ if __name__ == "__main__":
     www.init_html()
     www.init_articles()
 
+    www.generate_index()
+
     for article in www.articles:
-        print(f"Checking metadata for article {article.title}")
-        if not article.check_metadata():
-            print(f"Error: Invalid metadata")
-        else:
-            print(f"Generating html for article {article.title}")
-            www.generate_html_article(article)
+        print(f"Generating html for article {article.title}")
+        www.generate_html_article(article)
             

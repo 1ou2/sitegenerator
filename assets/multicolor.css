@@ -5,18 +5,27 @@ body {
     padding: 0;
     background-color: #1a1a1a;
     color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 .container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: auto;
     overflow: hidden;
+    flex: 1;
 }
 header {
     background: #333;
     color: #ffffff;
-    padding-top: 30px;
-    min-height: 70px;
+    padding: 1rem 0;
     border-bottom: #4CAF50 3px solid;
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 header a {
     color: #ffffff;
@@ -27,34 +36,29 @@ header a {
 header ul {
     padding: 0;
     list-style: none;
+    display: flex;
 }
 header li {
-    display: inline;
-    padding: 0 20px 0 20px;
-}
-header #branding {
-    float: left;
+    padding: 0 10px;
 }
 header #branding h1 {
     margin: 0;
 }
-header nav {
-    float: right;
-    margin-top: 10px;
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
 }
 .main-content {
-    float: left;
-    width: 70%;
-    padding: 0 30px;
-    box-sizing: border-box;
+    width: 100%;
+    max-width: 70%;
 }
 .sidebar {
-    float: right;
-    width: 30%;
-    padding: 0 30px;
-    box-sizing: border-box;
+    width: 100%;
+    max-width: 25%;
 }
-.article {
+.article, .bio, .all-tags {
     background: #333;
     padding: 15px;
     margin-bottom: 15px;
@@ -85,12 +89,6 @@ header nav {
 .tag-8 { background-color: #ff9800; }
 .tag-9 { background-color: #f436eb; }
 .tag-10 { background-color: #00ffd5; }
-.bio, .all-tags {
-    background: #333;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-}
 .tag {
     display: inline-block;
     background: #4CAF50;
@@ -100,10 +98,41 @@ header nav {
     margin-right: 5px;
     margin-bottom: 5px;
 }
-
-.article img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+.navigation {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.navigation a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+.navigation a:hover {
+    background-color: #45a049;
+}
+footer {
+    background-color: #333;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    .main-content, .sidebar {
+        max-width: 100%;
+    }
+    header .container {
+        flex-direction: column;
+    }
+    header ul {
+        margin-top: 1rem;
+    }
 }

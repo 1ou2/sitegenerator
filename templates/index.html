@@ -1,28 +1,68 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1ou2 - page {page_num}</title>
-    <link rel="stylesheet" href="assets/css/index-{theme}.css">
-</head>
-<body>
-    <header>
-        <h1>1ou2</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="collections/index.html">Collections</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="article-list">
-            {article_list}
-        </section>
-    </main>
-    <footer>
-        <p><a href="index.html">Retour à l'accueil</a></p>
-    </footer>
-</body>
-</html>
+    <title>{page_title}</title>
+    <link rel="stylesheet" href="assets/multicolor.css">
+    <body>
+        <header>
+            <div class="container">
+                <div id="branding">
+                    <h1>1ou2</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="main-content">
+                    <div class="article">
+                        <h2>The Ultimate Guide to Error Handling in Python</h2>
+                        <div class="article-meta">
+                            Posted by <span class="meta-box author">Gabriel</span> on <span class="meta-box date">October 7, 2024</span> under <span class="meta-box tag-1">Programming</span>, <span class="meta-box tag-2">Python</span>
+                        </div>
+                        <p>I often come across developers who know the mechanics of Python error handling well, yet when I review their code I find it to be far from good. Exceptions in Python is one of those areas that have a surface layer that most people know, and a deeper, almost secret one that a lot of developers don't even know exists...</p>
+                    </div>
+                    <div class="article">
+                        <h2>How LLMs Work, Explained Without Math</h2>
+                        <div class="article-meta">
+                            Posted by <span class="meta-box author">Gabriel</span> on <span class="meta-box date">May 5, 2024</span> under <span class="meta-box tag-1">AI</span>
+                        </div>
+                        <p>I'm sure you agree that it has become impossible to ignore Generative AI (GenAI), as we are constantly bombarded with mainstream news about Large Language Models (LLMs). Very likely you have tried ChatGPT, maybe even keep it open all the time as an assistant...</p>
+                    </div>
+                    {html_articles}
+                </div>
+                <div class="sidebar">
+                    <div class="bio">
+                        <h3>About Me</h3>
+                        <p>I'm a software engineer and technical writer, currently living in Drogheda, Ireland.</p>
+                    </div>
+                    <div class="all-tags">
+                        <h3>Tags</h3>
+                        <span class="tag">Programming</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Web Development</span>
+                    </div>
+                </div>
+            </div>
+            <div class="navigation">
+                <a href="{link_prev}" class="prev">Previous Page</a>
+                <a href="{link_next}" class="next">Next Page</a>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 My Blog. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+    </html>
