@@ -38,11 +38,36 @@ class Website:
         os.makedirs(static_dir, exist_ok=True)
         shutil.copytree("static", static_dir, dirs_exist_ok=True)
 
+    def init_articles(self):
+        md_files = self.get_markdown_files()
+       
+        for md_file in md_files:
+            article = Article(md_file)
+            self.add(article)
+
+        tag_count = {}
+        for article in self.articles:
+            for tag in article.tags:
+                if tag not in tag_count:
+                    tag_count[tag] = 0
+                tag_count[tag] += 1
+        # array of tags in count order from max to min
+        self.sorted_tags =  [k for k,v in sorted(tag_count.items(), key=lambda x:x[1],reverse=True)]
+
     # html article has been created
     def add(self,article):
         self.articles.append(article)
+
         for tag in article.tags:
-            www.article_by_tag[tag].append(article)
+            if tag not in self.articles_by_tag:
+                self.articles_by_tag[tag] = []
+            self.articles_by_tag[tag].append(article)
+
+
+    def get_top_tags(self,top):
+        """ Return the top most used tags """
+
+        return self.sorted_tags[:top]
 
     def get_template(self,filename):
         template_dir = "templates"
@@ -63,6 +88,9 @@ class Website:
         # variables used in the template
         css_rel_path = os.path.relpath(css_path, os.path.dirname(html_file_path))
         title = article.title
+  
+        top_tags = self.get_top_tags(10)
+        html_top_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(top_tags)])
 
         html_template = self.get_template("article.html")
         rendered_html = eval(f"f'''{html_template}'''")
@@ -85,12 +113,12 @@ if __name__ == "__main__":
 
     www = Website(md_dir, html_dir)
     www.init_html()
-    md_files = www.get_markdown_files()
-  
-    for md_file in md_files:
-        article = Article(md_file)
+    www.init_articles()
+
+    for article in www.articles:
+        print(f"Checking metadata for article {article.title}")
         if not article.check_metadata():
-            print(f"Error: Invalid metadata in {md_file}")
+            print(f"Error: Invalid metadata")
         else:
             print(f"Generating html for article {article.title}")
             www.generate_html_article(article)

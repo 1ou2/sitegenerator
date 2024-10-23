@@ -24,7 +24,7 @@
         <div class="main-content">
             <div class="article">
                 <div class="article-meta">
-                    Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} <span class="meta-box tag-1">Programming</span>, <span class="meta-box tag-2">Python</span>
+                    Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} 
                 </div>
             <h2>{article.title}</h2>
             {article.html}
@@ -37,10 +37,7 @@
             </div>
             <div class="all-tags">
                 <h3>Tags</h3>
-                <span class="tag">Programming</span>
-                <span class="tag">Python</span>
-                <span class="tag">AI</span>
-                <span class="tag">Web Development</span>
+                {html_top_tags}
             </div>
         </div>
     </div>

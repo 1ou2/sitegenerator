@@ -22,7 +22,7 @@ class Article:
             
         # create html_tags field
         # <span class="meta-box tag-1">Programming</span>, <span class="meta-box tag-2">Python</span>
-        self.html_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(self.meta_data["tags"])])
+        self.html_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(self.tags)])
         return True
     
     def get_md_content(self):
@@ -31,6 +31,8 @@ class Article:
     def parse_metadata(self):
         self.title = self.meta_data.get("title", "")
         self.date = self.meta_data.get("date", "")
+        # tags are separated by commas, split the tags string and strip spaces
+        self.tags = [t.strip() for t in self.meta_data.get("tags", "").split(",")]
 
     def parse_markdown_article(self):
         """Parse markdown file, extract meta data and content"""
@@ -58,8 +60,6 @@ class Article:
                         if ':' in line:
                             key, value = line.split(':', 1)
                             value = value.strip()
-                            if key == "tags": # convert tags to list
-                                value = [tag.strip() for tag in value.split(',')]
                             meta_data[key.strip()] = value
 
             else:
