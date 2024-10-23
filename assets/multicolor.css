@@ -71,6 +71,29 @@ header #branding h1 {
     font-size: 0.9em;
     margin-bottom: 10px;
 }
+
+.article img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+h1 .h1-link {
+    color: white;
+    text-decoration: none; /* This removes the underline */
+}
+
+h1 .h1-link:hover {
+    color: white; /* This ensures the link stays white even on hover */
+    text-decoration: underline; /* Optional: adds underline on hover */
+}
+
+h1 .h1-link:visited {
+    color: white; /* This ensures the link stays white even after being visited */
+}
+
+
 .meta-box {
     display: inline-block;
     padding: 3px 6px;

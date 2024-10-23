@@ -2,7 +2,7 @@ import argparse
 import os,shutil
 from dotenv import load_dotenv
 from articles import Article
-import math
+import math,re
 
 class Configuration:
     def __init__(self):
@@ -137,7 +137,31 @@ class Website:
         with open(html_file_path, 'w', encoding='utf-8') as f:
             f.write(rendered_html)
 
-
+    def update_image_paths(content, article_path):
+        # Get the directory of the article
+        article_dir = os.path.dirname(article_path)
+        
+        # Define the regex pattern to match the <a href> tags with specific suffixes
+        href_pattern = r'(<a href="([^"]+\.(?:png|jpg|jpeg|svg))">)'
+        
+        # Define the regex pattern to match the <img src> tags with specific suffixes
+        src_pattern = r'(<img[^>]*\s+src="([^"]+\.(?:png|jpg|jpeg|svg))"[^>]*>)'
+        
+        def replace_path(match, pattern_type):
+            if pattern_type == 'href':
+                full_tag, href = match.groups()
+                full_path = os.path.join(article_dir, href)
+                return full_tag.replace(f'href="{href}"', f'href="{full_path}"')
+            elif pattern_type == 'src':
+                full_tag, src = match.groups()
+                full_path = os.path.join(article_dir, src)
+                return full_tag.replace(f'src="{src}"', f'src="{full_path}"')
+        
+        # Use re.sub with a replacement function, ignoring case
+        updated_content = re.sub(href_pattern, lambda m: replace_path(m, 'href'), content, flags=re.IGNORECASE)
+        updated_content = re.sub(src_pattern, lambda m: replace_path(m, 'src'), updated_content, flags=re.IGNORECASE)
+        
+        return updated_content
 
     # generate the main page for the site
     def generate_index(self):
@@ -146,26 +170,40 @@ class Website:
             start = page * self.config.nb_articles_per_page
             end = start + self.config.nb_articles_per_page
             articles = self.articles[start:end]
-            snippets = [article.snippet for article in articles]
+            
             
             page_title = f"Page {page+1} of {total_pages}"
             html_top_tags = "hello"
             html_articles = ""
             html_template = self.get_template("embedded_article.html")
             for article in articles:
-                html_articles += eval(f"f'''{html_template}'''")
+                subpath = os.path.relpath(article.path, self.config.html_dir)
+                content = eval(f"f'''{html_template}'''")
+                
+                content = Website.update_image_paths(content, subpath)
+                html_articles += content
             link_prev = ""
             link_next = ""
-            if page > 0:
-                link_prev = f'<a href="index-{page-1}.html">Previous</a>'
+            if page == 1:
+                link_prev = "index.html"
+            if page > 1:
+                link_prev = f'index-{page-1}.html'
             if page < total_pages - 1:
-                link_next = f'<a href="index-{page+1}.html">Next</a>'
+                link_next = f'index-{page+1}.html'
 
 
+            print(f"for page {page} {link_prev=} {link_next=}")
+            top_tags = self.get_top_tags(self.config.top_tags)
+            html_top_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(top_tags)])
 
             html_template = self.get_template("index.html")
             rendered_html = eval(f"f'''{html_template}'''")
-            html_file_path = os.path.join(self.config.html_dir, f"index-{page}.html")
+            
+            if page == 0:
+                html_file_path = os.path.join(self.config.html_dir, "index.html")
+            else:
+                html_file_path = os.path.join(self.config.html_dir, f"index-{page}.html")
+            
             with open(html_file_path, 'w', encoding='utf-8') as f:
                 f.write(rendered_html)
 
