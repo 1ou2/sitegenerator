@@ -24,6 +24,18 @@ git pull origin new-feature
 # resolve conflicts
 git push
 ```
+# Configuration
+Create a .env
+```bash
+MARKDOWN_DIR="articles"
+HTML_DIR="html"
+TOP_TAGS=10
+NB_ARTICLES_PER_PAGE=2
+```
 
 # Articles
-Articles are created in markdown format
+Articles are created in markdown format and stored in `articles` directory
+
+# RUN
+`python3 website.py`
+

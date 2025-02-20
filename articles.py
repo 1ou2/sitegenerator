@@ -1,4 +1,5 @@
 import markdown,yaml
+from markdown.extensions import fenced_code, codehilite
 import os,shutil,re
 from dotenv import load_dotenv
 
@@ -57,7 +58,15 @@ class Article:
             if match:
                 yaml_content = match.group(1)
                 md_content = content[match.end():]
-                self.html = markdown.markdown(md_content)
+                self.html = markdown.markdown(
+                    md_content,
+                    extensions=[
+                        'fenced_code',
+                        'codehilite',
+                        'tables',
+                        'markdown.extensions.nl2br'
+                    ]
+                )
                 self.snippet = markdown.markdown(md_content)[:200]
                 # Parse YAML content
                 try:
