@@ -1,0 +1,250 @@
+/* ==============================
+   STYLE.CSS — VERSION MODERNISÉE
+   pour blog technique (thème sombre)
+   ============================== */
+
+/* -------- Variables de thème -------- */
+:root {
+    --bg-dark: #1b1d1f;
+    --bg-card: #242628;
+    --text-main: #eaeaea;
+    --text-muted: #b0b0b0;
+    --accent: #4fb477;
+    --border: #34373a;
+    --code-bg: #2b2f33;
+    --code-border: #4fb477;
+}
+
+/* -------- Structure de base -------- */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    flex: 1;
+}
+
+/* -------- Header -------- */
+header {
+    background: var(--bg-card);
+    color: var(--text-main);
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: var(--text-main);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease;
+}
+
+header a:hover {
+    color: var(--accent);
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+header li {
+    padding: 0 12px;
+}
+
+header #branding h1 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* -------- Contenu principal -------- */
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 70%;
+}
+
+.sidebar {
+    width: 100%;
+    max-width: 25%;
+}
+
+/* -------- Blocs (articles, sidebar) -------- */
+.article, .bio, .all-tags {
+    background: var(--bg-card);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.article h2 {
+    margin-top: 0;
+}
+
+.article-meta {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.article img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 15px auto;
+    border-radius: 8px;
+}
+
+/* -------- Liens -------- */
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* -------- Code blocks -------- */
+.codehilite {
+    background: var(--code-bg);
+    border-left: 3px solid var(--code-border);
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95em;
+    color: #e0e0e0;
+}
+
+.codehilite pre {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* -------- Liens de titre -------- */
+h1 .h1-link {
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+h1 .h1-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* -------- Meta tags -------- */
+.meta-box {
+    display: inline-block;
+    padding: 3px 6px;
+    border-radius: 3px;
+    margin-right: 5px;
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.author { background-color: var(--accent); }
+.date { background-color: #2196F3; }
+
+/* -------- Tags -------- */
+.tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.tag-docker { background: #2496ed; }
+.tag-linux { background: #f9a825; }
+.tag-logiciel { background: #e040fb; }
+.tag-ia { background: #00e5ff; }
+
+/* -------- Navigation -------- */
+.navigation {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.navigation a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.navigation a:hover {
+    background-color: #45a049;
+}
+
+/* -------- Footer -------- */
+footer {
+    background-color: var(--bg-card);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+    font-size: 0.9em;
+}
+
+/* -------- Responsive -------- */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .main-content, .sidebar {
+        max-width: 100%;
+    }
+
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header ul {
+        margin-top: 1rem;
+    }
+}

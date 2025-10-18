@@ -9,6 +9,7 @@ class Configuration:
         load_dotenv()
         self.md_dir = os.getenv("MARKDOWN_DIR")
         self.html_dir = os.getenv("HTML_DIR")
+        self.css_file = os.getenv("CSS_FILE", "style.css")
         self.top_tags = int(os.getenv("TOP_TAGS", 10))
         self.nb_articles_per_page = int(os.getenv("NB_ARTICLES_PER_PAGE", 5))
         self.config = {
@@ -121,7 +122,7 @@ class Website:
         # css file path
         # html article is in html_dir/YYYY/MM/DD/article_dir/article.html
         # css file is in html_dir/assets/style.css
-        css_path = os.path.join(self.config.html_dir,"assets", "multicolor.css")
+        css_path = os.path.join(self.config.html_dir,"assets", self.config.css_file)
         # variables used in the template
         css_rel_path = os.path.relpath(css_path, os.path.dirname(html_file_path))
         title = article.title

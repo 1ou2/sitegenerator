@@ -29,9 +29,16 @@ Create a .env
 ```bash
 MARKDOWN_DIR="articles"
 HTML_DIR="html"
-TOP_TAGS=10
+CSS_FILE="style.css"
+TOP_TAGS=5
 NB_ARTICLES_PER_PAGE=2
 ```
+
+MARKDOWN_DIR : location for the sources articles
+HTML_DIR="html" : output directory
+CSS_FILE="style.css" : CSS stylesheet that will be used - must be in the assets folder 
+TOP_TAGS=5 : number of tags to display
+NB_ARTICLES_PER_PAGE=2 : number of articles per pages
 
 # Articles
 Articles are created in markdown format and stored in `articles` directory
