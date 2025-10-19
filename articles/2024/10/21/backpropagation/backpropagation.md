@@ -3,7 +3,7 @@ title: Backpropagation - Descente de gradient
 date: 2024-10-21
 tags: IA
 abstract: Cet article explique pas à pas le principe de la descente de gradient, le cœur de l’entraînement d’un modèle.
-On part des bases — les entrées, les poids, la fonction de perte — puis on déroule ensemble les étapes : forward pass, backward pass, et mise à jour des poids. On verra comment le modèle ajuste petit à petit ses paramètres pour se rapprocher du bon résultat, et comment tout ça se traduit concrètement en dérivées, gradients et tensors (avec PyTorch en toile de fond).
+    On part des bases — les entrées, les poids, la fonction de perte — puis on déroule ensemble les étapes : forward pass, backward pass, et mise à jour des poids. On verra comment le modèle ajuste petit à petit ses paramètres pour se rapprocher du bon résultat, et comment tout ça se traduit concrètement en dérivées, gradients et tensors (avec PyTorch en toile de fond).
 ---
 
 

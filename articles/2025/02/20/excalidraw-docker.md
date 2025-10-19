@@ -2,7 +2,7 @@
 title: Installation excalidraw
 date: 2025-02-20
 tags: Docker, linux, logiciel
-abstract: Tuto rapide sur comment installer excalidraw via Docker pour une utilisation locale
+abstract: Tuto rapide sur comment installer excalidraw via Docker pour une utilisation locale
 ---
 
 Excalidraw est un excellent logiciel permettant de rapidement faire des dessins techniques. Il est simple et intuitif.
