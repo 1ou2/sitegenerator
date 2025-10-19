@@ -40,6 +40,7 @@ HTML_DIR="html" : output directory
 CSS_FILE="style.css" : CSS stylesheet that will be used - must be in the assets folder 
 TOP_TAGS=5 : number of tags to display
 NB_ARTICLES_PER_PAGE=2 : number of articles per pages
+SHOW_FULL_CONTENT=false : show full content of articles or only the abstract in main page
 
 # Articles
 Articles are created in markdown format and stored in `articles` directory
@@ -56,7 +57,4 @@ this project is a website generator.
 - articles.py : generate one article
 - website.py : entry point for the program. generates the index, the pages and the articles
 
-Currently the index page contains the full content of the articles (there is a limit in the number of articles per page). 
-# TODO
-Add a parameter so that i can either keep the current way of generating pages with the full content of the articles or only include the title, and the abstract of the article (the abstract is a metadata in the yaml header of my markdown article)
 

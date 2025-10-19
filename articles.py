@@ -80,7 +80,7 @@ class Article:
                 except yaml.YAMLError as e:
                     # If YAML parsing fails, try a custom approach
                     # some data contains ':' so we split on the first ':' encountered
-                    print(f"Error parsing YAML in {self.md_file_path}: {e}")
+                    print(f"Error parsing YAML in {self.md_file_path}")
                     meta_data = {}
                     lines = yaml_content.split('\n')
                     current_key = None

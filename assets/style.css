@@ -15,9 +15,20 @@
     --code-border: #4fb477;
 }
 
+[data-theme="light"] {
+    --bg-dark: #ffffff;
+    --bg-card: #f8f9fa;
+    --text-main: black;
+    --text-muted: #666666;
+    --accent: #127e54;
+    --border: #e0e0e0;
+    --code-bg: #f5f5f5;
+    --code-border: #127e54;
+}
+
 /* -------- Structure de base -------- */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: Menlo, Consolas, DejaVu Sans Mono, monospace;
     line-height: 1.7;
     margin: 0;
     padding: 0;
@@ -48,6 +59,22 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--accent);
+    color: white;
 }
 
 header a {
@@ -147,15 +174,36 @@ a:hover {
     color: #e0e0e0;
 }
 
+[data-theme="light"] .codehilite {
+    color: #333333;
+}
+
 .codehilite pre {
     margin: 0;
     line-height: 1.5;
 }
 
 /* -------- Liens de titre -------- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-main);
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+    color: #127e54;
+}
+
 h1 .h1-link {
     color: var(--text-main);
     text-decoration: none;
+}
+
+[data-theme="light"] h1 .h1-link {
+    color: #127e54;
 }
 
 h1 .h1-link:hover {
@@ -174,6 +222,10 @@ h1 .h1-link:hover {
     font-weight: 500;
 }
 
+[data-theme="light"] .meta-box {
+    color: #000;
+}
+
 .author { background-color: var(--accent); }
 .date { background-color: #2196F3; }
 
@@ -188,6 +240,10 @@ h1 .h1-link:hover {
     margin-bottom: 5px;
     font-size: 0.85em;
     font-weight: 500;
+}
+
+[data-theme="light"] .tag {
+    color: #000;
 }
 
 .tag-docker { background: #2496ed; }
