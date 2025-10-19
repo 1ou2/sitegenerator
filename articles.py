@@ -28,9 +28,8 @@ class Article:
             if field not in self.meta_data:
                 return False
             
-        # create html_tags field
-        # <span class="meta-box tag-1">Programming</span>, <span class="meta-box tag-2">Python</span>
-        self.html_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(self.tags)])
+        # create html_tags field with links
+        self.html_tags = "".join([f'<a href="../tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(self.tags)])
         return True
     
 

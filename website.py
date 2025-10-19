@@ -130,7 +130,7 @@ class Website:
         title = article.title
   
         top_tags = self.get_top_tags(self.config.top_tags)
-        html_top_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(top_tags)])
+        html_top_tags = "".join([f'<a href="../../../../tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(top_tags)])
 
         html_template = self.get_template("article.html")
         rendered_html = eval(f"f'''{html_template}'''")
@@ -167,6 +167,30 @@ class Website:
         return updated_content
 
     # generate the main page for the site
+    def generate_tag_pages(self):
+        # Create tags directory
+        tags_dir = os.path.join(self.config.html_dir, "tags")
+        os.makedirs(tags_dir, exist_ok=True)
+        
+        for tag in self.articles_by_tag:
+            articles = self.articles_by_tag[tag]
+            tag_articles = ""
+            
+            for article in articles:
+                article_link = os.path.relpath(article.path, tags_dir)
+                tag_articles += f'<p><a href="{article_link}">{article.title}</a> - {article.date}</p>'
+            
+            top_tags = self.get_top_tags(self.config.top_tags)
+            html_top_tags = "".join([f'<a href="{t}.html"><span class="meta-box tag-{i+1}">{t}</span></a>' for i, t in enumerate(top_tags)])
+            
+            html_template = self.get_template("tag.html")
+            tag_name = tag
+            rendered_html = eval(f"f'''{html_template}'''")
+            
+            tag_file_path = os.path.join(tags_dir, f"{tag}.html")
+            with open(tag_file_path, 'w', encoding='utf-8') as f:
+                f.write(rendered_html)
+
     def generate_index(self):
         total_pages = math.ceil(len(self.articles) / self.config.nb_articles_per_page)
         for page in range(total_pages):
@@ -200,7 +224,7 @@ class Website:
 
             print(f"for page {page} {link_prev=} {link_next=}")
             top_tags = self.get_top_tags(self.config.top_tags)
-            html_top_tags = "".join([f'<span class="meta-box tag-{i+1}">{tag}</span>' for i, tag in enumerate(top_tags)])
+            html_top_tags = "".join([f'<a href="tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(top_tags)])
 
             html_template = self.get_template("index.html")
             rendered_html = eval(f"f'''{html_template}'''")
@@ -222,6 +246,8 @@ if __name__ == "__main__":
     www.init_articles()
 
     www.generate_index()
+
+    www.generate_tag_pages()
 
     for article in www.articles:
         print(f"Generating html for article {article.title}")
