@@ -177,6 +177,7 @@ class Website:
             html_top_tags = "hello"
             html_articles = ""
             html_template = self.get_template("embedded_article.html")
+            css_path = os.path.join("assets", self.config.css_file)
             for article in articles:
                 subpath = os.path.relpath(article.path, self.config.html_dir)
                 content = eval(f"f'''{html_template}'''")
