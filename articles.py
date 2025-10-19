@@ -47,6 +47,7 @@ class Article:
         # tags are separated by commas, split the tags string and strip spaces
         self.tags = [t.strip() for t in self.meta_data.get("tags", "").split(",")]
         self.abstract = self.meta_data.get("abstract", "")
+        self.thumbnail = self.meta_data.get("thumbnail", "")
         if not self.check_metadata():
             print(f"Error: Invalid metadata")
 

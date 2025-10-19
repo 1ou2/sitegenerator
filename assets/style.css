@@ -78,7 +78,7 @@ header .container {
 }
 
 header a {
-    color: var(--text-main);
+    color: var(--accent);
     text-decoration: none;
     text-transform: uppercase;
     font-size: 15px;
@@ -185,7 +185,7 @@ a:hover {
 
 /* -------- Liens de titre -------- */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--text-main);
+    color: var(--accent);
 }
 
 [data-theme="light"] h1,
