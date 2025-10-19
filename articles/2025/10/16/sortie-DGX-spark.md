@@ -2,6 +2,7 @@
 title: Sortie du Nvidia DGX Spark
 date: 2025-10-16
 tags: IA, hardware, DGX spark
+abstract: Je me suis penché sur le DGX Spark, la nouvelle machine IA de Nvidia. Pas le plus rapide pour l’inférence, mais un bijou pour l’entraînement et le développement. Avec 128 Go de RAM, un environnement complet prêt à l’emploi et un silence bluffant, c’est une machine qui donne envie… si on peut se permettre ses 4 400 €.
 ---
 
 Nvidia vient d’annoncer la sortie du DGX Spark, une petite bête présentée comme une alternative locale pour le développement en Intelligence artificielle. Annoncé en mars 2025, il a fallu attendre le 15 octobre 2025 pour voir les premiers retours d’utilisateurs.
@@ -95,6 +96,7 @@ Vous pouvez également accéder à la machine à distance via Nvidia SYNC, ce qu
 ## Conclusion
 
 En résumé, le DGX Spark est une machine pensée pour les développeurs IA et les chercheurs. Compacte, silencieuse et prête à l’emploi, elle offre une expérience proche d’un environnement cloud, mais en local, avec la liberté de tester, entraîner et fine-tuner des modèles de manière flexible et sécurisée. Si votre objectif est le développement IA sérieux, c’est un excellent choix.
+PS: ne pas craquer, ne pas craquer, ...
 
 # Mon avis
 
