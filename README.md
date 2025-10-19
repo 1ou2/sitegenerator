@@ -32,6 +32,7 @@ HTML_DIR="html"
 CSS_FILE="style.css"
 TOP_TAGS=5
 NB_ARTICLES_PER_PAGE=2
+SHOW_FULL_CONTENT=false
 ```
 
 MARKDOWN_DIR : location for the sources articles

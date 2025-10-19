@@ -39,9 +39,15 @@ class Article:
 
     def parse_metadata(self):
         self.title = self.meta_data.get("title", "")
-        self.date = self.meta_data.get("date", "")
+        date_str = self.meta_data.get("date", "")
+        # Convert date string to consistent format for sorting
+        if isinstance(date_str, str):
+            self.date = date_str
+        else:
+            self.date = str(date_str) if date_str else ""
         # tags are separated by commas, split the tags string and strip spaces
         self.tags = [t.strip() for t in self.meta_data.get("tags", "").split(",")]
+        self.abstract = self.meta_data.get("abstract", "")
         if not self.check_metadata():
             print(f"Error: Invalid metadata")
 
@@ -76,11 +82,22 @@ class Article:
                     # some data contains ':' so we split on the first ':' encountered
                     print(f"Error parsing YAML in {self.md_file_path}: {e}")
                     meta_data = {}
-                    for line in yaml_content.split('\n'):
-                        if ':' in line:
+                    lines = yaml_content.split('\n')
+                    current_key = None
+                    current_value = []
+                    
+                    for line in lines:
+                        if ':' in line and not line.startswith(' ') and not line.startswith('\t'):
+                            if current_key:
+                                meta_data[current_key] = ' '.join(current_value).strip()
                             key, value = line.split(':', 1)
-                            value = value.strip()
-                            meta_data[key.strip()] = value
+                            current_key = key.strip()
+                            current_value = [value.strip()] if value.strip() else []
+                        elif current_key and line.strip():
+                            current_value.append(line.strip())
+                    
+                    if current_key:
+                        meta_data[current_key] = ' '.join(current_value).strip()
 
             else:
                 meta_data = {}

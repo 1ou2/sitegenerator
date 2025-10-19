@@ -12,11 +12,13 @@ class Configuration:
         self.css_file = os.getenv("CSS_FILE", "style.css")
         self.top_tags = int(os.getenv("TOP_TAGS", 10))
         self.nb_articles_per_page = int(os.getenv("NB_ARTICLES_PER_PAGE", 5))
+        self.show_full_content = os.getenv("SHOW_FULL_CONTENT", "true").lower() == "true"
         self.config = {
             "md_dir": self.md_dir,
             "html_dir": self.html_dir,
             "top_tags": self.top_tags,
-            "nb_articles_per_page": self.nb_articles_per_page
+            "nb_articles_per_page": self.nb_articles_per_page,
+            "show_full_content": self.show_full_content
         }
 
     def get(self, key):
@@ -176,13 +178,15 @@ class Website:
             page_title = f"Page {page+1} of {total_pages}"
             html_top_tags = "hello"
             html_articles = ""
-            html_template = self.get_template("embedded_article.html")
+            template_name = "embedded_article.html" if self.config.get("show_full_content") else "embedded_article_summary.html"
+            html_template = self.get_template(template_name)
             css_path = os.path.join("assets", self.config.css_file)
             for article in articles:
                 subpath = os.path.relpath(article.path, self.config.html_dir)
                 content = eval(f"f'''{html_template}'''")
                 
-                content = Website.update_image_paths(content, subpath)
+                if self.config.get("show_full_content"):
+                    content = Website.update_image_paths(content, subpath)
                 html_articles += content
             link_prev = ""
             link_next = ""
