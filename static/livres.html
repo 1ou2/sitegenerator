@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livres</title>
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        /* Constrain cover images so they don't stretch full width */
+        .book-cover, .book-cover-small {
+            max-width: 220px;     /* maximum visual size */
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 8px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Gallery: keep figure items from stretching and layout neatly */
+        .article .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .article .gallery figure {
+            margin: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #444;
+            flex: 0 0 auto; /* prevents flex items from expanding */
+            width: 140px;   /* preferred thumbnail column width */
+        }
+        .article .gallery a { display: inline-block; }
+        .article .gallery img { max-width: 140px; height: auto; }
+        .article .gallery figcaption { margin-top: 6px; }
+    </style>
 </head>
 <body>
     <header>
@@ -32,7 +63,9 @@
                     <div class="article-meta">
                         Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">2024-10-22</span> sous <span class="meta-box tag-1">Livre</span>
                     </div>
-                    <img src="assets/couverture-acelj.png" alt="Couverture du livre Au commencement était le Jeu" class="book-cover">
+                    <a href="https://www.amazon.fr/dp/B08MYYXFCV/">
+                        <img src="assets/couverture-acelj.png" alt="Couverture du livre Au commencement était le Jeu" class="book-cover">
+                    </a>
                     
                     <h2>Synopsis</h2>
                     <p>Humanis est en paix et les 8 provinces qui la composent ne s'affrontent désormais qu'au travers de jeux en simulateur. Les grandes maladies sont sous contrôle grâce aux vitameds qui guérissent tous les maux connus et allongent l'espérance de vie. Les Intelligences Supérieures gèrent la société et notamment l'allocation de vitameds aux provinces en fonction des résultats individuels et collectifs aux jeux. Mais la stabilité de cet ordre est menacée par l'avènement d'une nouvelle religion.</p>
@@ -44,6 +77,59 @@
                     <h2>Je voudrais le lire ...</h2>
                     <p>Pour commander <a href="https://www.amazon.fr/dp/B08MYYXFCV/">Au commencement était le Jeu</a></p>
                 </div>
+                <div class="article">
+                    <h1>Livres de jeux de logiques</h1>
+                    <div class="article-meta">
+                        Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">2024-10-22</span> sous <span class="meta-box tag-1">Livre</span>
+                    </div>
+
+                    <p>Envie d'un défi malin ? Voici une sélection de livres pour éveiller la logique et la créativité. Cliquez sur les vignettes pour commander directement.</p>
+
+                    <div class="gallery">
+                        <figure>
+                                <a href="https://www.amazon.fr/Nonogram-logimage-picross-logique-japonais/dp/B08ZB6CRVR/" target="_blank" rel="noopener">
+                                    <img src="assets/nonogram.jpg" alt="Couverture du livre Nonogram" class="book-cover-small">
+                                </a>
+                                <figcaption><a href="https://www.amazon.fr/Nonogram-logimage-picross-logique-japonais/dp/B08ZB6CRVR/" target="_blank" rel="noopener">Nonogram facile à difficile</a></figcaption>
+                            </figure>
+
+                            <figure>
+                                <a href="https://www.amazon.fr/Nonograms-logimages-faciles-sp%C3%A9cial-d%C3%A9butants/dp/B093RP1XFC/" target="_blank" rel="noopener">
+                                    <img src="assets/nonogram-facile.jpg" alt="Couverture du livre Nonogram facile" class="book-cover-small">
+                                </a>
+                                <figcaption><a href="https://www.amazon.fr/Nonograms-logimages-faciles-sp%C3%A9cial-d%C3%A9butants/dp/B093RP1XFC/" target="_blank" rel="noopener">Nonograms spécial débutants</a></figcaption>
+                            </figure>
+
+                            <figure>
+                                <a href="https://www.amazon.fr/Calcudoku-facile-%C3%A0-difficile-grilles/dp/B09WZ162T6/" target="_blank" rel="noopener">
+                                    <img src="assets/calcudoku.jpg" alt="Couverture du livre Calcudoku" class="book-cover-small">
+                                </a>
+                                <figcaption><a href="https://www.amazon.fr/Calcudoku-facile-%C3%A0-difficile-grilles/dp/B09WZ162T6/" target="_blank" rel="noopener">Calcudoku — grilles faciles à difficiles</a></figcaption>
+                            </figure>
+
+                            <figure>
+                                <a href="https://www.amazon.fr/Total-Hashi-grilles-hashiwokakero-japonais/dp/B099C4YXZK/" target="_blank" rel="noopener">
+                                    <img src="assets/total-hashi.jpg" alt="Couverture du livre Total Hashi" class="book-cover-small">
+                                </a>
+                                <figcaption><a href="https://www.amazon.fr/Total-Hashi-grilles-hashiwokakero-japonais/dp/B099C4YXZK/" target="_blank" rel="noopener">Total Hashi</a></figcaption>
+                            </figure>
+                                                        <figure>
+                                <a href="https://www.amazon.fr/Hashi-bridges-travel-book-hashiwokakero/dp/B099BYDLXC/" target="_blank" rel="noopener">
+                                    <img src="assets/travel-hashi.jpg" alt="Couverture du livre Total Hashi" class="book-cover-small">
+                                </a>
+                                <figcaption><a href="https://www.amazon.fr/Hashi-bridges-travel-book-hashiwokakero/dp/B099BYDLXC/" target="_blank" rel="noopener">Travel Hashi</a></figcaption>
+                            </figure>
+                    </div>
+
+                    <h2>Pourquoi ces jeux ?</h2>
+                    <p>Que vous souhaitiez vous détendre ou muscler votre raisonnement logique, ces livres proposent des puzzles progressifs, des astuces et des grilles pensées pour tous les niveaux. Les nonograms révèlent une image au fil des cases colorées, le Calcudoku combine opérations et placement, et Hashiwokakero demande planification et stratégie.</p>
+
+                    <p>Intéressé par un titre en particulier ? Utilisez les liens sous chaque vignette pour commander.</p>
+
+
+                </div>
+                
+
             </div>
             <div class="sidebar">
                 <div class="bio">
