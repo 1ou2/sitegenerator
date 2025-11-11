@@ -3,3 +3,6 @@ flask_limiter
 python-dotenv
 markdown
 pyyaml
+numpy
+torch
+tabulate

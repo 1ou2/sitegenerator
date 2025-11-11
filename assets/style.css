@@ -1,9 +1,5 @@
-/* ==============================
-   STYLE.CSS — VERSION MODERNISÉE
-   pour blog technique (thème sombre)
-   ============================== */
 
-/* -------- Variables de thème -------- */
+/* -------- Variables de thÃ¨me -------- */
 :root {
     --bg-dark: #1b1d1f;
     --bg-card: #242628;
@@ -13,6 +9,10 @@
     --border: #34373a;
     --code-bg: #2b2f33;
     --code-border: #4fb477;
+
+    /* inline code colors */
+    --inline-code-color: #5fd68a;
+    --inline-code-bg: rgba(255,184,107,0.15);
 }
 
 [data-theme="light"] {
@@ -181,6 +181,23 @@ a:hover {
 .codehilite pre {
     margin: 0;
     line-height: 1.5;
+}
+
+/* -------- Inline code styling -------- */
+code {
+    color: var(--inline-code-color);
+    background-color: var(--code-bg);
+    font-size: 0.9em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    padding: 2px 4px;
+    border-radius: 3px;
+    border: none;
+    font-weight: bold;
+}
+
+[data-theme="light"] code {
+    color: #0a5d3a;
+    font-weight: bold;
 }
 
 /* -------- Liens de titre -------- */
