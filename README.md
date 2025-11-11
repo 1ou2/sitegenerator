@@ -88,3 +88,28 @@ Deployment:
 - `templates/`: HTML templates for different page types
 - `assets/style.css`: Main stylesheet with light/dark theme support
 - `assets/theme-toggle.js`: Theme switching functionality
+
+# TODO Multilang support
+[] Translate articles
+
+[] Store both versions in same folder
+YYYY/MM/DD/article-name/
+  fr.md
+  en.md
+  images/
+
+[] Modify yaml to add language tag
+
+[] Add crosslink between languages
+<link rel="alternate" hreflang="fr" href="https://example.com/fr/floating-point/" />
+<link rel="alternate" hreflang="en" href="https://example.com/en/floating-point/" />
+<link rel="canonical" href="https://example.com/fr/floating-point/" />
+
+[] Add language selector in template
+FR 🇫🇷  |  EN 🇬🇧
+
+[] Handle mono language case
+Some articles will be written in only one language
+
+[] Static pages
+Translate also static pages (livres and contact)
