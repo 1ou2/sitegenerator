@@ -28,8 +28,9 @@ class Article:
             if field not in self.meta_data:
                 return False
             
-        # create html_tags field with links
-        self.html_tags = "".join([f'<a href="../tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(self.tags)])
+        # create html_tags field with language-specific links
+        language = getattr(self, 'language', 'fr')
+        self.html_tags = "".join([f'<a href="../../../../../tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(self.tags)])
         return True
     
 
@@ -48,6 +49,56 @@ class Article:
         self.tags = [t.strip() for t in self.meta_data.get("tags", "").split(",")]
         self.abstract = self.meta_data.get("abstract", "")
         self.thumbnail = self.meta_data.get("thumbnail", "")
+        # Add language support
+        self.language = self.meta_data.get("language", "fr")  # Default to French
+        
+        # Extract article slug from path for translations
+        self.article_slug = self.extract_article_slug()
+        
+        if not self.check_metadata():
+            print(f"Error: Invalid metadata")
+    
+    def extract_article_slug(self):
+        """Extract article slug from file path for multilingual support"""
+        if not self.md_file_path:
+            return ""
+        
+        # Extract the article directory name from path like:
+        # articles/2025/11/10/floating-point/fr.md -> floating-point
+        path_parts = self.md_file_path.split(os.sep)
+        
+        # Find the article directory (the one before language file)
+        for i, part in enumerate(path_parts):
+            if part in ['fr.md', 'en.md']:
+                if i > 0:
+                    return path_parts[i-1]
+                break
+        
+        return ""
+    
+    def get_translations_dir(self):
+        """Get the directory containing all translations of this article"""
+        if not self.md_file_path:
+            return ""
+        
+        return os.path.dirname(self.md_file_path)
+    
+    def find_translations(self):
+        """Find all available translations of this article"""
+        translations = {}
+        translations_dir = self.get_translations_dir()
+        
+        if not translations_dir or not os.path.exists(translations_dir):
+            return translations
+        
+        # Look for language files in the same directory
+        for filename in os.listdir(translations_dir):
+            if filename.endswith('.md'):
+                lang_code = filename.replace('.md', '')
+                if lang_code in ['fr', 'en']:  # Supported languages
+                    translations[lang_code] = os.path.join(translations_dir, filename)
+        
+        return translations
         if not self.check_metadata():
             print(f"Error: Invalid metadata")
 

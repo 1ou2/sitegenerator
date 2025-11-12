@@ -105,6 +105,33 @@ header #branding h1 {
     font-weight: 600;
 }
 
+/* -------- Language Selector -------- */
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lang-link, .lang-current {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.lang-link:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.lang-current {
+    background: var(--accent);
+    color: white;
+    font-weight: bold;
+}
+
 /* -------- Contenu principal -------- */
 .content-wrapper {
     display: flex;

@@ -4,5 +4,5 @@
         Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} 
     </div>
     <p>{article.abstract}</p>
-    {f'<img src="{os.path.dirname(subpath)}/{article.thumbnail}" alt="{article.title}" style="max-width: 200px; height: auto;">' if article.thumbnail else ''}
+    {f'<img src="../{os.path.dirname(subpath)}/{article.thumbnail}" alt="{article.title}" style="max-width: 200px; height: auto;">' if article.thumbnail else ''}
 </div>

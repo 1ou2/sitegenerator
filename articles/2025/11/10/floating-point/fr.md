@@ -3,7 +3,8 @@ title: Floating point
 date: 2025-11-11
 tags: byte, fp, int
 thumbnail: IEEE754-fp32.png
-abstract: Un tour d’horizon concret de la représentation IEEE 754 : mantisse, exposant, précision, erreurs d’arrondi. On démonte la machine et on regarde exactement comment les nombres sont stockés en mémoire et pourquoi `0.1` n’existe pas vraiment en binaire.
+abstract: Un tour d'horizon concret de la représentation IEEE 754 : mantisse, exposant, précision, erreurs d'arrondi. On démonte la machine et on regarde exactement comment les nombres sont stockés en mémoire et pourquoi `0.1` n'existe pas vraiment en binaire.
+language: fr
 ---
 
 # Le bug : 0.1 + 0.1 +0.1 != 0.3

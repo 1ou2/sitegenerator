@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"","children":[{"content":"Le bug :&#xa0;0.1 + 0.1 +0.1 != 0.3","children":[{"content":"V&#xe9;rifions que <code>0.1 + 0.1</code> est &#xe9;gal &#xe0; <code>0.2</code>","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"Que <code>0.1 + 0.1 + 0.1 = 0.3</code>","children":[],"payload":{"tag":"li","lines":"11,12"}},{"content":"Ou encore que l&apos;on peut changer l&apos;ordre des calculs dans une addition (que l&apos;addition est bien commutative)","children":[],"payload":{"tag":"li","lines":"12,14"}}],"payload":{"tag":"h1","lines":"8,9"}},{"content":"Base 10 vs Base 2","children":[{"content":"Repr&#xe9;sentation d&apos;un nombre entier en base 2","children":[{"content":"<pre data-lines=\"37,38\"><code>- 1 &#xd7; 2&#xb3; + 1 &#xd7; 2&#xb2; + 0 &#xd7; 2&#xb9; + 1 &#xd7; 2&#x2070; = 8 + 4 + 0 + 1 = 13\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"37,38"}},{"content":"<pre data-lines=\"40,44\"><code class=\"language-python\"><span class=\"hljs-meta\">&gt;&gt;&gt; </span><span class=\"hljs-built_in\">bin</span>(<span class=\"hljs-number\">13</span>)\n<span class=\"hljs-string\">&apos;0b1101&apos;</span>\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"40,44"}}],"payload":{"tag":"h2","lines":"34,35"}}],"payload":{"tag":"h1","lines":"21,22"}},{"content":"Dtype","children":[{"content":"<code>float32</code> sur 32 bits","children":[],"payload":{"tag":"li","lines":"50,51"}},{"content":"<code>float16</code> sur 16 bits","children":[],"payload":{"tag":"li","lines":"51,52"}},{"content":"<code>bfloat16</code> sur 16 bits","children":[],"payload":{"tag":"li","lines":"52,53"}},{"content":"<code>fp8</code> sur 8 bits","children":[],"payload":{"tag":"li","lines":"53,54"}},{"content":"<code>fp4</code> sur 4 bits","children":[],"payload":{"tag":"li","lines":"54,55"}},{"content":"<code>mxfp4</code> sur 4 bits","children":[],"payload":{"tag":"li","lines":"55,56"}},{"content":"<code>nvfp4</code> sur 4 bits","children":[],"payload":{"tag":"li","lines":"56,58"}}],"payload":{"tag":"h1","lines":"45,46"}},{"content":"IEEE754","children":[{"content":"Le signe","children":[],"payload":{"tag":"h2","lines":"82,83"}},{"content":"L&apos;exposant","children":[{"content":"<pre data-lines=\"90,92\"><code>valeur = mantisse * 10^exposant\navec mantisse sous la forme 1.xxx\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"90,92"}},{"content":"<pre data-lines=\"95,98\"><code>3.14 = 3.14 * 10^0\n0.00314 = 3.14 * 10^-3\n3140 = 3.14 * 10^3\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"95,98"}},{"content":"<pre data-lines=\"101,103\"><code>valeur = mantisse * 2^exposant\navec mantisse sous la forme 1.xxx\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"101,103"}},{"content":"<pre data-lines=\"113,114\"><code>biais = 2^(nombre_de_bits_exposant - 1) - 1\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"113,114"}},{"content":"<pre data-lines=\"117,118\"><code>biais = 2^(8-1) - 1 = 127\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"117,118"}}],"payload":{"tag":"h2","lines":"86,87"}},{"content":"La mantisse","children":[],"payload":{"tag":"h2","lines":"119,120"}},{"content":"Notation","children":[{"content":"<code>E4M3</code> : on aura un exposant sur 4 bits et une mantisse sur 3","children":[],"payload":{"tag":"li","lines":"125,126"}},{"content":"<code>E5M2</code> :&#xa0;l&apos;exposant est sur 5 bits et la mantisse sur 2","children":[],"payload":{"tag":"li","lines":"126,128"}}],"payload":{"tag":"h2","lines":"123,124"}},{"content":"Cas particulier","children":[{"content":"Z&#xe9;ro","children":[],"payload":{"tag":"h3","lines":"129,130"}},{"content":"Infinit&#xe9;","children":[],"payload":{"tag":"h3","lines":"134,135"}},{"content":"NaN","children":[],"payload":{"tag":"h3","lines":"137,138"}}],"payload":{"tag":"h2","lines":"128,129"}}],"payload":{"tag":"h1","lines":"58,59"}},{"content":"Conversion","children":[{"content":"Exemple 1","children":[{"content":"1. Signe : <code>1.625</code> est positif, donc le bit de signe est <code>0</code>.","children":[],"payload":{"tag":"li","lines":"154,155","listIndex":1}},{"content":"2. Conversion en binaire : La partie enti&#xe8;re <code>1</code> est <code>1</code> en binaire<br>\nLa partie fractionnaire 0.625 est <code>0.101</code> car <code>0.625 = 1/2 + 1/8 = 1 * 2^-1 + 0 * 2^-2 + 1* 2^-3</code><br>\nDonc, 1.625 en binaire est <code>1.101</code>","children":[],"payload":{"tag":"li","lines":"155,158","listIndex":2}},{"content":"3. La partie enti&#xe8;re est <code>1 * 2^0</code>. L&apos;exposant r&#xe9;el est 0, et on va stocker <code>exposant_reel + biais</code> soit la valeur <code>0 + 127</code>. En binaire cela donne <code>01111111</code>","children":[],"payload":{"tag":"li","lines":"158,159","listIndex":3}},{"content":"4. La mantisse est <code>1.101</code>, on enl&#xe8;ve le <code>1.</code>, il reste <code>101</code> et on compl&#xe8;te avec des z&#xe9;ros pour obtenir 23 bits : <code>10100000000000000000000</code>","children":[],"payload":{"tag":"li","lines":"159,160","listIndex":4}},{"content":"5. Assemblage : On combine le bit de signe, l&apos;exposant et la mantisse","children":[{"content":"Signe : <code>0</code>","children":[],"payload":{"tag":"li","lines":"161,162"}},{"content":"Exposant : <code>01111111</code>","children":[],"payload":{"tag":"li","lines":"162,163"}},{"content":"Mantisse : <code>10100000000000000000000</code>","children":[],"payload":{"tag":"li","lines":"163,164"}},{"content":"Repr&#xe9;sentation finale en binaire : <code>0 01111111 10100000000000000000000</code>","children":[],"payload":{"tag":"li","lines":"164,166"}}],"payload":{"tag":"li","lines":"160,166","listIndex":5}}],"payload":{"tag":"h2","lines":"151,152"}},{"content":"Exemple 2","children":[{"content":"<pre data-lines=\"181,191\"><code>0.345*2 = 0.690 entier E=0\n0.690*2 = 1.380 entier E=1\n0.380*2 = 0.760 entier E=0\n0.760*2 = 1.520 entier E=1\n0.520*2 = 1.040 entier E=1\n0.040*2 = 0.080 entier E=0\n0.080*2 = 0.160 entier E=0\n0.160*2 = 0.320 entier E=0\n0.320*2 = 0.640 entier E=0\n0.640*2 = 1.280 entier E=1\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"181,191"}},{"content":"<pre data-lines=\"214,215\"><code>`0 01111011 10011001100110011001101`\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"214,215"}},{"content":"<pre data-lines=\"220,224\"><code class=\"language-python\"><span class=\"hljs-meta\">&gt;&gt;&gt; </span><span class=\"hljs-number\">0.1</span> + <span class=\"hljs-number\">0.1</span> + <span class=\"hljs-number\">0.1</span> - <span class=\"hljs-number\">0.3</span>\n<span class=\"hljs-number\">5.5511151231257827e-17</span>\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"220,224"}},{"content":"<pre data-lines=\"225,229\"><code class=\"language-python\"><span class=\"hljs-meta\">&gt;&gt;&gt; </span><span class=\"hljs-number\">1.1</span> + <span class=\"hljs-number\">2.2</span>\n<span class=\"hljs-number\">3.3000000000000003</span>\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"225,229"}}],"payload":{"tag":"h2","lines":"166,167"}}],"payload":{"tag":"h1","lines":"142,143"}},{"content":"Pour aller plus loin","children":[{"content":"Decimal vs Binary floating point","children":[{"content":"<pre data-lines=\"236,242\"><code class=\"language-python\"><span class=\"hljs-keyword\">from</span> decimal <span class=\"hljs-keyword\">import</span> Decimal\n\n<span class=\"hljs-built_in\">print</span>(<span class=\"hljs-number\">0.1</span> + <span class=\"hljs-number\">0.1</span> + <span class=\"hljs-number\">0.1</span>)\n<span class=\"hljs-built_in\">print</span>(Decimal(<span class=\"hljs-string\">&quot;0.1&quot;</span>) + Decimal(<span class=\"hljs-string\">&quot;0.1&quot;</span>) + Decimal(<span class=\"hljs-string\">&quot;0.1&quot;</span>))\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"236,242"}},{"content":"<pre data-lines=\"243,245\"><code>0.30000000000000004\n0.3\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"243,245"}}],"payload":{"tag":"h2","lines":"233,234"}}],"payload":{"tag":"h1","lines":"232,233"}},{"content":"Ressources","children":[{"content":"Python floating point <a href=\"https://docs.python.org/3/tutorial/floatingpoint.html\">https://docs.python.org/3/tutorial/floatingpoint.html</a>","children":[],"payload":{"tag":"li","lines":"253,254"}},{"content":"Numpy : <a href=\"https://numpy.org/doc/stable/user/basics.types.html\">https://numpy.org/doc/stable/user/basics.types.html</a>","children":[],"payload":{"tag":"li","lines":"254,255"}},{"content":"Utilisation de FP8 dans Deepseek <a href=\"https://arxiv.org/pdf/2505.09343\">https://arxiv.org/pdf/2505.09343</a>","children":[],"payload":{"tag":"li","lines":"255,257"}}],"payload":{"tag":"h1","lines":"252,253"}}]},{})</script>
+</body>
+</html>

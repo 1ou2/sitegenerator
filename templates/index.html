@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{page_title}</title>
-    <link rel="stylesheet"  href="{css_path}">
-    <body>
-        <header>
-            <div class="container">
-                <div id="branding">
-                    <h1>1ou2</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="livres.html">Livres</a></li>
-                        <li><a href="https://livresavif.com">Podcast livres à vif</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <button id="theme-toggle" class="theme-toggle">☀️</button>
+    <link rel="stylesheet" href="{css_path}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>1ou2</h1>
             </div>
-        </header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../livres.html">Livres</a></li>
+                    <li><a href="https://livresavif.com">Podcast livres à vif</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                {language_selector}
+            </div>
+            <button id="theme-toggle" class="theme-toggle">☀️</button>
+        </div>
+    </header>
         
         <div class="container">
             <div class="content-wrapper">
@@ -50,6 +54,6 @@
                 <p>&copy; 2025 Gabriel Pastor. All rights reserved.</p>
             </div>
         </footer>
-        <script src="assets/theme-toggle.js"></script>
+        <script src="../assets/theme-toggle.js"></script>
     </body>
     </html>

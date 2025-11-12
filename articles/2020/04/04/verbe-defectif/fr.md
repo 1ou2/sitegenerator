@@ -2,7 +2,8 @@
 title: Le verbe extraire est défectif
 date: 2020-04-04
 tags: écriture, style
-abstract: Ce qui est merveilleux quand on écrit c'est qu'on découvre des règles, des subtilités et autres curiosités de la langue français qu'on a sans doute apprises dans notre jeunesse. Tout récemment j'ai écrit dans mon texte un « il extraya ». Or mon indéfectible correcteur orthographique a décidé de le souligner en rouge. J’ai donc fait quelque recherche et j'ai appris que le verbe extraire ne se conjugue pas au passé simple. C'est un verbe dit *défectif* qui ne se conjugue pas à tous les temps.
+abstract: Ce qui est merveilleux quand on écrit c'est qu'on découvre des règles, des subtilités et autres curiosités de la langue français qu'on a sans doute apprises dans notre jeunesse. Tout récemment j'ai écrit dans mon texte un « il extraya ». Or mon indéfectible correcteur orthographique a décidé de le souligner en rouge. J'ai donc fait quelque recherche et j'ai appris que le verbe extraire ne se conjugue pas au passé simple. C'est un verbe dit *défectif* qui ne se conjugue pas à tous les temps.
+language: fr
 ---
 
 # Les verbes défectifs
