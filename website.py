@@ -325,7 +325,13 @@ class Website:
             # Generate language selector for index
             language_selector = self.generate_index_language_selector(language)
             
-            html_template = self.get_template("index.html")
+            if language == "fr":
+                html_template = self.get_template("index.html")
+            elif language == "en":
+                html_template = self.get_template("en-index.html")
+            else:
+                raise ValueError(f"language not supported : {language}")
+            
             rendered_html = eval(f"f'''{html_template}'''")
             
             # Save in language directory
@@ -368,7 +374,7 @@ class Website:
                 flag = language_flags.get(lang, lang.upper())
                 is_current = lang == current_language
                 css_class = 'lang-current' if is_current else 'lang-link'
-                selector_links.append(f'<a href="../{lang}/" class="{css_class}">{flag} {lang.upper()}</a>')
+                selector_links.append(f"""<a href="../{lang}" onclick="document.cookie='lang={lang}; path=/; max-age='+(60*60*24*365)" class="{css_class}">{flag} {lang.upper()}</a>""")
         
         return " | ".join(selector_links)
 
@@ -415,7 +421,7 @@ class Website:
                     flag = language_flags.get(lang, lang.upper())
                     is_current = lang == article.language
                     css_class = 'lang-current' if is_current else 'lang-link'
-                    selector_links.append(f'<a href="{lang_url}" class="{css_class}">{flag} {lang.upper()}</a>')
+                    selector_links.append(f"""<a href="{lang_url}" onclick="document.cookie='lang={lang}; path=/; max-age='+(60*60*24*365)" class="{css_class}">{flag} {lang.upper()}</a>""")
         
         return " | ".join(selector_links)
 
