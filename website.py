@@ -192,6 +192,12 @@ class Website:
         language_selector = self.generate_language_selector(article, translations)
 
         html_template = self.get_template("article.html")
+        if article.language == "fr":
+            html_template = self.get_template("article.html")
+        elif article.language == "en":
+            html_template = self.get_template("en-article.html")
+        else:
+            raise ValueError(f"language not supported : {article.language}")
         rendered_html = eval(f"f'''{html_template}'''")
         
         # Update image paths to point to shared location

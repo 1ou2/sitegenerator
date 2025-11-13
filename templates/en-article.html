@@ -15,10 +15,10 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="../../../../../">Accueil</a></li>
-                    <li><a href="../../../../../livres.html">Livres</a></li>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../books.html">Books</a></li>
                     <li><a href="https://livresavif.com">Podcast livres à vif</a></li>
-                    <li><a href="../../../../../contact.html">Contact</a></li>
+                    <li><a href="../en-contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="language-selector">
@@ -33,7 +33,7 @@
                 <div class="article">
                     <h1>{article.title}</h1>
                     <div class="article-meta">
-                        Posté par <span class="meta-box author">Gabriel</span> le <span class="meta-box date">{article.date}</span> sous {article.html_tags} 
+                        Posted by <span class="meta-box author">Gabriel</span> on <span class="meta-box date">{article.date}</span> under {article.html_tags} 
                     </div>
                 {article.html}
                 </div>
@@ -45,8 +45,8 @@
                 </div>
             </div>
             <div class="navigation">
-                <a href="{article.prev_path}" class="prev">Page précédente</a>
-                <a href="{article.next_path}" class="next">Page suivante</a>
+                <a href="{article.prev_path}" class="prev">Previous Page</a>
+                <a href="{article.next_path}" class="next">Next Page</a>
             </div>
         </div>
     </div>
