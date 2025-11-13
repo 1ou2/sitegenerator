@@ -213,3 +213,7 @@ Some articles will be written in only one language
 
 [ ] Static pages
 Translate also static pages (livres and contact)
+
+[ ] Create two separates pages for tags
+create a /fr/tags/ and a /en/tags/
+use a separate template for fr-tag.html en-tag.html 

@@ -147,6 +147,12 @@ class Website:
         """ Return the top most used tags """
         return self.sorted_tags[:top]
 
+    def get_top_tags_by_language(self, language, top):
+        """ Return the top most used tags for a specific language """
+        if language in self.sorted_tags_by_language:
+            return self.sorted_tags_by_language[language][:top]
+        return []
+
     def get_template(self,filename):
         template_dir = "templates"
         filename = os.path.join(template_dir, filename)
@@ -243,28 +249,53 @@ class Website:
 
     # generate the main page for the site
     def generate_tag_pages(self):
-        # Create tags directory
-        tags_dir = os.path.join(self.config.html_dir, "tags")
-        os.makedirs(tags_dir, exist_ok=True)
+        """Generate tag pages for each language"""
+        # Get all languages from the articles
+        languages = set(article.language for article in self.articles)
         
-        for tag in self.articles_by_tag:
-            articles = self.articles_by_tag[tag]
-            tag_articles = ""
+        for language in languages:
+            # Create tags directory for this language
+            tags_dir = os.path.join(self.config.html_dir, language, "tags")
+            os.makedirs(tags_dir, exist_ok=True)
             
-            for article in articles:
-                article_link = os.path.relpath(article.path, tags_dir)
-                tag_articles += f'<p><a href="{article_link}">{article.title}</a> - {article.date}</p>'
+            # Group articles by tag for this specific language
+            articles_by_tag_lang = {}
+            if language in self.articles_by_language:
+                for article in self.articles_by_language[language]:
+                    for tag in article.tags:
+                        if tag not in articles_by_tag_lang:
+                            articles_by_tag_lang[tag] = []
+                        articles_by_tag_lang[tag].append(article)
             
-            top_tags = self.get_top_tags(self.config.top_tags)
-            html_top_tags = "".join([f'<a href="{t}.html"><span class="meta-box tag-{i+1}">{t}</span></a>' for i, t in enumerate(top_tags)])
-            
-            html_template = self.get_template("tag.html")
-            tag_name = tag
-            rendered_html = eval(f"f'''{html_template}'''")
-            
-            tag_file_path = os.path.join(tags_dir, f"{tag}.html")
-            with open(tag_file_path, 'w', encoding='utf-8') as f:
-                f.write(rendered_html)
+            # Generate a page for each tag in this language
+            for tag in articles_by_tag_lang:
+                articles = articles_by_tag_lang[tag]
+                tag_articles = ""
+                
+                # Build the list of articles for this tag
+                for article in articles:
+                    article_link = os.path.relpath(article.path, tags_dir)
+                    tag_articles += f'<p><a href="{article_link}">{article.title}</a> - {article.date}</p>'
+                
+                # Get top tags for this language
+                top_tags = self.sorted_tags_by_language.get(language, [])[:self.config.top_tags]
+                html_top_tags = "".join([f'<a href="{t}.html"><span class="meta-box tag-{i+1}">{t}</span></a>' for i, t in enumerate(top_tags)])
+                
+                # Use language-specific template
+                template_name = f"{language}-tag.html" if language != self.config.default_language else "tag.html"
+                try:
+                    html_template = self.get_template(template_name)
+                except FileNotFoundError:
+                    # Fallback to default template if language-specific template doesn't exist
+                    html_template = self.get_template("tag.html")
+                
+                tag_name = tag
+                rendered_html = eval(f"f'''{html_template}'''")
+                
+                # Write the tag page file
+                tag_file_path = os.path.join(tags_dir, f"{tag}.html")
+                with open(tag_file_path, 'w', encoding='utf-8') as f:
+                    f.write(rendered_html)
 
     def generate_index(self):
         """Generate language-specific index pages"""
