@@ -264,14 +264,37 @@ h1 .h1-link:hover {
     color: #fff;
     font-size: 0.85em;
     font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #4fb477;
+    text-decoration-thickness: 4px;
+}
+
+.meta-box:hover {
+    /* Make the underline darker when you hover */
+    border-bottom-color: #45a049;   /* or any colour you prefer */
+    background: var(--accent);      /* keep the background same */
 }
 
 [data-theme="light"] .meta-box {
     color: #000;
 }
 
-.author { background-color: var(--accent); }
-.date { background-color: #2196F3; }
+.author { 
+    background-color: var(--accent); 
+    text-decoration: none;
+}
+.author:hover { 
+    background-color: var(--accent); 
+    text-decoration: none;
+}
+.date { 
+    background-color: #2196F3; 
+    text-decoration: none;
+}
+.date:hover {
+    background-color: #2196F3; 
+    text-decoration: none;
+}
 
 /* -------- Tags -------- */
 .tag {

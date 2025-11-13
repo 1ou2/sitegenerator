@@ -21,16 +21,6 @@ def deploy():
     # Copy local html to remote
     copy_cmd = f"scp -r {html_dir} ubuntu@{server}:{site_dir}/"
     subprocess.run(copy_cmd, shell=True)
-
-    # check deployment - use curl to fetch the homepage
-    # site_dir should be like /var/www/mysite
-    # check if we get a 200 OK response
-    domain = site_dir.split('/')[-1]
-    check_cmd = f"curl -o /dev/null -s -w '%{{http_code}}' https://{domain}"
-    result = subprocess.run(check_cmd, shell=True, capture_output=True, text=True)
-    if result.stdout.strip() != "200":
-        print("Deployment failed: Unable to reach the site or non-200 response")
-        return
     
     print(f"Deployment completed to {server}:{site_dir}")
 

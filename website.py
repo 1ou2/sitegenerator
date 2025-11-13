@@ -187,7 +187,7 @@ class Website:
         lang_top_tags = self.sorted_tags_by_language.get(article.language, [])[:self.config.top_tags]
         
         # Calculate relative path to tags from article location
-        tags_path = f"../../../../../tags/"
+        tags_path = f"../../../../../{article.language}/tags/"
         html_top_tags = "".join([f'<a href="{tags_path}{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(lang_top_tags)])
 
         # Get translations for hreflang
@@ -357,6 +357,7 @@ class Website:
             
             # Language-specific top tags
             lang_top_tags = self.sorted_tags_by_language.get(language, [])[:self.config.top_tags]
+
             html_top_tags = "".join([f'<a href="tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(lang_top_tags)])
 
             # Generate language selector for index

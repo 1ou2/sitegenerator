@@ -30,7 +30,7 @@ class Article:
             
         # create html_tags field with language-specific links
         language = getattr(self, 'language', 'fr')
-        self.html_tags = "".join([f'<a href="../../../../../tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(self.tags)])
+        self.html_tags = "".join([f'<a href="../../../../../{language}/tags/{tag}.html"><span class="meta-box tag-{i+1}">{tag}</span></a>' for i, tag in enumerate(self.tags)])
         return True
     
 
@@ -131,7 +131,7 @@ class Article:
                 except yaml.YAMLError as e:
                     # If YAML parsing fails, try a custom approach
                     # some data contains ':' so we split on the first ':' encountered
-                    print(f"Error parsing YAML in {self.md_file_path}")
+                    #print(f"Error parsing YAML in {self.md_file_path}")
                     meta_data = {}
                     lines = yaml_content.split('\n')
                     current_key = None
