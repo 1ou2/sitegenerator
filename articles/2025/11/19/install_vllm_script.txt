@@ -1,0 +1,25 @@
+sudo apt install cmake build-essential ninja-build python3-dev
+
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
+uv pip install xgrammar triton
+uv pip install flashinfer-python --prerelease=allow --index-url https://flashinfer.ai/whl/nightly/ --no-deps
+uv pip install flashinfer-cubin --index-url https://flashinfer.ai/whl/nightly/
+uv pip install flashinfer-jit-cache --prerelease=allow --index-url https://flashinfer.ai/whl/nightly/cu130
+
+git clone https://github.com/vllm-project/vllm.git
+cd vllm
+python use_existing_torch.py
+sed -i "/flashinfer/d" requirements/cuda.txt
+uv pip install -r requirements/build.txt
+
+export TORCH_CUDA_ARCH_LIST=12.1a
+export TRITON_PTXAS_PATH=/usr/local/cuda/bin/ptxas
+export TIKTOKEN_ENCODINGS_BASE=$PWD/tiktoken_encodings
+uv pip install --no-build-isolation -e . -v --pre
+uv pip pip install --no-build-isolation -e .[audio] -v --pre
+cd ..
+mkdir -p tiktoken_encodings
+wget -O tiktoken_encodings/o200k_base.tiktoken "https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken"
+wget -O tiktoken_encodings/cl100k_base.tiktoken "https://openaipublic.blob.core.windows.net/encodings/cl100k_base.tiktoken"

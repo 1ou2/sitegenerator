@@ -224,7 +224,7 @@ class Website:
             shared_path = article_dir.split('/', 1)[1]  # Remove language prefix
         
         # Define the regex pattern to match the <a href> tags with specific suffixes
-        href_pattern = r'(<a href="([^"]+\.(?:png|jpg|jpeg|svg|excalidraw))">)'
+        href_pattern = r'(<a href="([^"]+\.(?:png|jpg|jpeg|svg|excalidraw|txt))">)'
         
         # Define the regex pattern to match the <img src> tags with specific suffixes
         src_pattern = r'(<img[^>]*\s+src="([^"]+\.(?:png|jpg|jpeg|svg))"[^>]*>)'
