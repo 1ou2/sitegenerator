@@ -10,7 +10,7 @@ language: fr
 # Installons vLLM sur DGX Spark
 En date du 2025/11/19 l'installation de vLLM sur un Spark n'est pas facile ! Notre objectif aujourd'hui est d'avoir une installation pleinement opérationnelle de vLLM pour pouvoir utiliser un modèle  `Mistral 7B` sur un `DGX‑Spark`. 
 
-# 1.Installatino des packages systèmes requis 
+# 1.Installation des packages systèmes requis 
 vLLM a besoin d'une chaîne de compilation C++ avec CMake pour que `Triton` et `flash-infer JIT` puissent être compilé.
 
 

@@ -227,6 +227,18 @@ code {
     font-weight: bold;
 }
 
+/* ----- Code blocks : bloc complet ----- */
+[data-theme="light"] .codehilite {
+  background: #e8f5e9;   /* vert pastel très clair */
+  color: #2e7d32;        /* vert foncé, texte contrasté */
+}
+
+/* ----- Inline code ----- */
+[data-theme="light"] code {
+  background-color: #f0f9e7; /* encore plus clair */
+  color: #33691e;           /* vert foncé */
+}
+
 /* -------- Liens de titre -------- */
 h1, h2, h3, h4, h5, h6 {
     color: var(--accent);
