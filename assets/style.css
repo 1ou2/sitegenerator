@@ -1,58 +1,70 @@
-
-/* -------- Variables de thÃ¨me -------- */
+/* ==========================================================================
+   VARIABLES DE THÈME
+   ========================================================================== */
 :root {
-    --bg-dark: #1b1d1f;
-    --bg-card: #242628;
-    --text-main: #eaeaea;
-    --text-muted: #b0b0b0;
-    --accent: #4fb477;
-    --border: #34373a;
-    --code-bg: #2b2f33;
-    --code-border: #4fb477;
+    --bg: #1e1f22;
+    --bg-card: #2a2c2f;
+    --text-main: #e6e6e6;
+    --text-muted: #9aa0a6;
+    --accent: #4cc37b;
+    --border: #3a3d40;
 
-    /* inline code colors */
-    --inline-code-color: #5fd68a;
-    --inline-code-bg: rgba(255,184,107,0.15);
+    --code-bg: #242628;
+    --code-border: var(--accent);
+
+    --inline-code-bg: rgba(76,195,123,0.15);
+    --inline-code-color: #7fffb2;
 }
 
 [data-theme="light"] {
-    --bg-dark: #ffffff;
-    --bg-card: #f8f9fa;
-    --text-main: black;
-    --text-muted: #666666;
-    --accent: #127e54;
-    --border: #e0e0e0;
-    --code-bg: #f5f5f5;
-    --code-border: #127e54;
+    --bg: #ffffff;
+    --bg-card: #f5f6f7;
+    --text-main: #222;
+    --text-muted: #666;
+    --accent: #268a58;
+    --border: #dadada;
+
+    --code-bg: #f1f3f3;
+    --inline-code-bg: #e6f5eb;
+    --inline-code-color: #1f6a47;
 }
 
-/* -------- Structure de base -------- */
+/* ==========================================================================
+   LAYOUT GÉNÉRAL
+   ========================================================================== */
 body {
-    font-family: Menlo, Consolas, DejaVu Sans Mono, monospace;
+    overflow-x: auto;
+}
+
+body {
+    font-family: system-ui, Arial, sans-serif;
     line-height: 1.7;
     margin: 0;
-    padding: 0;
-    background-color: var(--bg-dark);
+    background: var(--bg);
     color: var(--text-main);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+}
+.main-content {
+    min-width: 0;
+}
+
+.sidebar {
+    min-width: 200px;
+    flex-shrink: 1;
 }
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: auto;
-    flex: 1;
 }
 
-/* -------- Header -------- */
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
 header {
     background: var(--bg-card);
-    color: var(--text-main);
     padding: 1rem 0;
     border-bottom: 2px solid var(--accent);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 header .container {
@@ -61,325 +73,161 @@ header .container {
     align-items: center;
 }
 
-.theme-toggle {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text-main);
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.2s ease;
-}
-
-.theme-toggle:hover {
-    background: var(--accent);
-    color: white;
+nav ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
 }
 
 header a {
     color: var(--accent);
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: 0.05em;
-    transition: color 0.2s ease;
-}
-
-header a:hover {
-    color: var(--accent);
-}
-
-header ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-}
-
-header li {
-    padding: 0 12px;
-}
-
-header #branding h1 {
-    margin: 0;
     font-weight: 600;
 }
 
-/* -------- Language Selector -------- */
-.language-selector {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.lang-link, .lang-current {
-    color: var(--accent);
-    text-decoration: none;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: all 0.2s ease;
-}
-
-.lang-link:hover {
-    background: var(--accent);
-    color: white;
-}
-
-.lang-current {
-    background: var(--accent);
-    color: white;
-    font-weight: bold;
-}
-
-/* -------- Contenu principal -------- */
+/* ==========================================================================
+   STRUCTURE PAGE
+   ========================================================================== */
 .content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-.main-content {
-    width: 100%;
-    max-width: 70%;
+
+.main-content { flex: 3; }
+.sidebar      { flex: 1; }
+
+/* ==========================================================================
+   BLOCS / CARTES
+   ========================================================================== */
+
+.main-content .article {
+    margin-bottom: 2rem; /* espace entre les articles */
 }
 
-.sidebar {
-    width: 100%;
-    max-width: 25%;
-}
-
-/* -------- Blocs (articles, sidebar) -------- */
 .article, .bio, .all-tags {
     background: var(--bg-card);
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 1.5rem;
     border-radius: 10px;
     border: 1px solid var(--border);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-}
-
-.article h2 {
-    margin-top: 0;
-}
-
-.article-meta {
-    font-size: 0.9em;
-    color: var(--text-muted);
-    margin-bottom: 10px;
 }
 
 .article img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 15px auto;
-    border-radius: 8px;
+    margin: 1rem auto;  /* centrer horizontalement */
 }
 
-/* -------- Liens -------- */
-a {
+/* ==========================================================================
+   TITRES
+   ========================================================================== */
+h1, h2, h3, h4 {
     color: var(--accent);
-    text-decoration: none;
+    margin-top: 1.5rem;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+/* ==========================================================================
+   LIENS
+   ========================================================================== */
+a { color: var(--accent); }
+a:hover { text-decoration: underline; }
 
-/* -------- Code blocks -------- */
+/* ==========================================================================
+   CODE
+   ========================================================================== */
 .codehilite {
     background: var(--code-bg);
     border-left: 3px solid var(--code-border);
-    padding: 1em;
-    margin: 1em 0;
+    padding: 1rem;
     border-radius: 6px;
     overflow-x: auto;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95em;
-    color: #e0e0e0;
+    font-family: "JetBrains Mono", monospace;
 }
 
-[data-theme="light"] .codehilite {
-    color: #333333;
-}
-
-.codehilite pre {
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* -------- Inline code styling -------- */
 code {
+    background: var(--inline-code-bg);
     color: var(--inline-code-color);
-    background-color: var(--code-bg);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.9em;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-    padding: 2px 4px;
-    border-radius: 3px;
-    border: none;
-    font-weight: bold;
 }
 
-[data-theme="light"] code {
-    color: #0a5d3a;
-    font-weight: bold;
-}
-
-/* ----- Code blocks : bloc complet ----- */
-[data-theme="light"] .codehilite {
-  background: #e8f5e9;   /* vert pastel très clair */
-  color: #2e7d32;        /* vert foncé, texte contrasté */
-}
-
-/* ----- Inline code ----- */
-[data-theme="light"] code {
-  background-color: #f0f9e7; /* encore plus clair */
-  color: #33691e;           /* vert foncé */
-}
-
-/* -------- Liens de titre -------- */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--accent);
-}
-
-[data-theme="light"] h1,
-[data-theme="light"] h2,
-[data-theme="light"] h3,
-[data-theme="light"] h4,
-[data-theme="light"] h5,
-[data-theme="light"] h6 {
-    color: #127e54;
-}
-
-h1 .h1-link {
-    color: var(--text-main);
-    text-decoration: none;
-}
-
-[data-theme="light"] h1 .h1-link {
-    color: #127e54;
-}
-
-h1 .h1-link:hover {
-    color: var(--accent);
-    text-decoration: underline;
-}
-
-/* -------- Meta tags -------- */
-.meta-box {
-    display: inline-block;
-    padding: 3px 6px;
-    border-radius: 3px;
-    margin-right: 5px;
-    color: #fff;
-    font-size: 0.85em;
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-color: #4fb477;
-    text-decoration-thickness: 4px;
-}
-
-.meta-box:hover {
-    /* Make the underline darker when you hover */
-    border-bottom-color: #45a049;   /* or any colour you prefer */
-    background: var(--accent);      /* keep the background same */
-}
-
-[data-theme="light"] .meta-box {
-    color: #000;
-}
-
-.author { 
-    background-color: var(--accent); 
-    text-decoration: none;
-}
-.author:hover { 
-    background-color: var(--accent); 
-    text-decoration: none;
-}
-.date { 
-    background-color: #2196F3; 
-    text-decoration: none;
-}
-.date:hover {
-    background-color: #2196F3; 
-    text-decoration: none;
-}
-
-/* -------- Tags -------- */
+/* ==========================================================================
+   TAGS / META
+   ========================================================================== */
+.meta-box,
 .tag {
-    display: inline-block;
     background: var(--accent);
     color: #fff;
     padding: 4px 8px;
     border-radius: 4px;
+    font-size: 0.8em;
     margin-right: 5px;
     margin-bottom: 5px;
-    font-size: 0.85em;
-    font-weight: 500;
+    display: inline-block;
 }
 
-[data-theme="light"] .tag {
-    color: #000;
+/* TAGS DANS LA SIDEBAR */
+
+
+.all-tags .tags-list {
+    display: flex;
+    flex-wrap: wrap;   /* les tags passent à la ligne si trop larges */
+    gap: 6px;          /* espace entre les tags */
 }
 
-.tag-docker { background: #2496ed; }
-.tag-linux { background: #f9a825; }
-.tag-logiciel { background: #e040fb; }
-.tag-ia { background: #00e5ff; }
+.all-tags a {
+    display: inline-block; /* pour conserver le style des spans .meta-box */
+}
 
-/* -------- Navigation -------- */
+.all-tags .meta-box {
+    white-space: normal; /* permet le retour à la ligne à l'intérieur du tag si texte long */
+}
+
+
+.sidebar > div {
+    margin-bottom: 1.5rem; /* espace entre bio et tags */
+}
+
+
 .navigation {
+    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 30px 0;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex: 0 0 100%;
 }
 
-.navigation a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--accent);
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 6px;
-    margin: 0 10px;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
 
 .navigation a:hover {
-    background-color: #45a049;
+    background: #c2e6c2;
 }
 
-/* -------- Footer -------- */
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 footer {
-    background-color: var(--bg-card);
-    color: var(--text-muted);
+    margin-top: 3rem;
+    padding: 2rem 0;
     text-align: center;
-    padding: 25px 0;
-    margin-top: 30px;
+    background: var(--bg-card);
     border-top: 1px solid var(--border);
-    font-size: 0.9em;
+    color: var(--text-muted);
 }
 
-/* -------- Responsive -------- */
-@media (max-width: 768px) {
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1000px) {
     .content-wrapper {
-        flex-direction: column;
-    }
-
-    .main-content, .sidebar {
-        max-width: 100%;
-    }
-
-    header .container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    header ul {
-        margin-top: 1rem;
+        grid-template-columns: 1fr;
     }
 }
