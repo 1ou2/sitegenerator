@@ -18,7 +18,7 @@ export TORCH_CUDA_ARCH_LIST=12.1a
 export TRITON_PTXAS_PATH=/usr/local/cuda/bin/ptxas
 export TIKTOKEN_ENCODINGS_BASE=$PWD/tiktoken_encodings
 uv pip install --no-build-isolation -e . -v --pre
-uv pip pip install --no-build-isolation -e .[audio] -v --pre
+uv pip install --no-build-isolation -e .[audio] -v --pre
 cd ..
 mkdir -p tiktoken_encodings
 wget -O tiktoken_encodings/o200k_base.tiktoken "https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken"
