@@ -144,8 +144,18 @@ a:hover { text-decoration: underline; }
     border-left: 3px solid var(--code-border);
     padding: 1rem;
     border-radius: 6px;
-    overflow-x: auto;
     font-family: "JetBrains Mono", monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.codehilite pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin: 0;
 }
 
 code {
